@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$p = 'c:\\Users\\Usuário\\OneDrive - STOA Seguros\\Documentos\\ProjetoClaudeCode'; Set-Location $p; git add -A; git diff --staged --exit-code 2>$null; if ($LASTEXITCODE -ne 0) { git commit -m ('Auto-sync: ' + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')); git push } 2>$null",
+            "shell": "powershell",
+            "statusMessage": "Sincronizando com GitHub...",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

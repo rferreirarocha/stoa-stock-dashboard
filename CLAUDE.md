@@ -23,6 +23,26 @@ Two-file structure with a clear separation of concerns:
 - **`data_fetcher.py`** — data layer. Fetches OHLCV data from Yahoo Finance (`yfinance`), computes cumulative performance, and produces per-ticker summary metrics (price, YTD return, high/low). The `TICKERS` dict maps display names to Yahoo Finance symbols (`*.SA` suffix for B3).
 - **`app.py`** — presentation layer. Streamlit app that calls `data_fetcher` functions and renders three Plotly charts: closing price, cumulative performance (%), and monthly average volume.
 
+## GitHub Repository
+
+- **Repositório:** https://github.com/rferreirarocha/stoa-stock-dashboard
+- **Branch principal:** `main`
+
+### Sync automático
+
+Toda alteração feita via Claude Code (Edit ou Write) é automaticamente commitada e enviada ao GitHub. O hook está configurado em `.claude/settings.json` e executa:
+
+```
+git add -A → git commit -m "Auto-sync: <timestamp>" → git push
+```
+
+Para commits manuais fora do Claude Code:
+```bash
+git add -A
+git commit -m "mensagem"
+git push
+```
+
 ## Key Conventions
 
 - Ticker display names (`"Petrobras"`, `"Itaú"`, `"Vale"`) are defined once in `data_fetcher.TICKERS` and flow through both layers — columns are renamed at fetch time so `app.py` never references raw Yahoo symbols.
